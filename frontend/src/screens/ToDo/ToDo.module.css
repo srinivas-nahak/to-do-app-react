@@ -1,0 +1,21 @@
+.to-do-page {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.to-do-page > * {
+  margin: 1rem auto;
+}
+
+.to-do-page h1 {
+  font-size: 2rem;
+  color: #383838;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .to-do-page {
+    width: 90%;
+    margin: 0 auto;
+  }
+}

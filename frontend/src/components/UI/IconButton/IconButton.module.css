@@ -1,0 +1,18 @@
+.Button {
+  border-radius: 1rem;
+  padding: 0.5rem 0;
+  height: 2.5rem;
+  border: none;
+  outline: none;
+}
+
+.Button:focus,
+.Button:focus-visible {
+  border: none;
+  outline: none;
+}
+
+.ButtonIcon {
+  font-size: 1rem;
+  width: 2.5rem;
+}

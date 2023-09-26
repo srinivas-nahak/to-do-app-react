@@ -1,0 +1,59 @@
+:root {
+  --negative-button-color: #d76d4c;
+  --negative-button-hover-color: #bc5c3e;
+  --tick-color: #6c8ade;
+  --tick-color-hover: #6c8ade70;
+  --tick-color-faded: #6c8ade50;
+  --border-radius: 1rem;
+  --inner-padding: 0.8rem;
+}
+
+.to-do-item-container {
+  padding: var(--inner-padding) 1rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.to-do-item-container:hover {
+  background-color: #e2e2e2;
+}
+
+.to-do-item-tick {
+  padding: 0.4rem 0.45rem;
+  border-radius: 0.7rem;
+  border: 1.5px solid #84848460;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tick-color-faded);
+}
+
+.to-do-item-tick:hover {
+  background-color: var(--tick-color);
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.to-do-item-tick-checked {
+  background-color: var(--tick-color);
+  color: white;
+}
+
+.to-do-item-title {
+  width: 100%;
+  margin-left: 1rem;
+}
+
+.to-do-item-delete {
+  background-color: var(--negative-button-color);
+  margin-left: 0.5rem;
+  color: white;
+}
+
+.to-do-item-delete:hover {
+  background-color: var(--negative-button-hover-color);
+}

@@ -1,14 +1,16 @@
-import { useDispatch, useSelector } from "react-redux";
-import { counterActions } from "./store/counterSlice";
-import { RootState } from "./store";
+import { useSelector } from "react-redux";
+import ErrorModal from "./components/ErrorModal/ErrorModal";
 import ToDo from "./screens/ToDo/ToDo";
+import { RootState } from "./store";
 
 const App = () => {
-  const dispatch = useDispatch();
-  const counter = useSelector((state: RootState) => state.counter);
+  // const errorObj = useSelector(
+  //   (state: RootState) => state.errorReducer.errorObj
+  // );
 
   return (
     <>
+      {/* {errorObj.showModal && <ErrorModal errorMessage={errorObj.message} />} */}
       <ToDo />
     </>
   );

@@ -1,0 +1,38 @@
+:root {
+  --positive-button-color: #7fd1ae;
+  --positive-button-hover-color: #6bb393;
+  --border-radius: 1rem;
+  --inner-padding: 0.8rem;
+}
+
+.new-task-form-container {
+  padding: 1.2rem 1rem;
+  box-sizing: border-box;
+}
+
+.new-task-form-container form {
+  display: flex;
+}
+
+.new-task-form-container form > input {
+  width: 100%;
+  border-radius: var(--border-radius);
+  padding: var(--inner-padding);
+  border: none;
+}
+
+.new-task-form-container form > input:active,
+.new-task-form-container form > input:focus,
+.new-task-form-container form > input:focus-visible {
+  outline: 3px solid #36363610;
+}
+
+.new-task-form__upload-button {
+  background-color: var(--positive-button-color);
+  margin-left: 0.5rem;
+  color: white;
+}
+
+.new-task-form__upload-button:hover {
+  background-color: var(--positive-button-hover-color);
+}
