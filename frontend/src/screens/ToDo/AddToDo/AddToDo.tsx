@@ -7,11 +7,19 @@ import IconButton from "../../../components/UI/IconButton/IconButton";
 import { useDispatch } from "react-redux";
 import { taskAction } from "../../../store/taskSlice";
 import { errorAction } from "../../../store/errorSlice";
+import {
+  useAddToDoMutation,
+  useDeleteToDoMutation,
+  useUpdateToDoMutation,
+} from "../../../store/api/apiSlices";
 
 const AddToDo = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
+
+  const [addToDo] = useAddToDoMutation();
+  const [deleteToDo] = useAddToDoMutation();
 
   const submitHandler = (event: FormEvent) => {
     event.preventDefault();
@@ -20,7 +28,7 @@ const AddToDo = () => {
       const inputTask = inputRef.current.value.trim();
 
       if (inputTask === "") {
-        // dispatch(errorAction.showErrorModal("The task can't be empty!"));
+        //dispatch(errorAction.showErrorModal("The task can't be empty!"));
         return;
       }
 
@@ -31,6 +39,13 @@ const AddToDo = () => {
       //     isChecked: false,
       //   })
       // );
+
+      //Sending data to the server
+      addToDo({
+        id: Math.random(),
+        title: inputTask,
+        isChecked: false,
+      });
       inputRef.current.value = "";
     }
   };

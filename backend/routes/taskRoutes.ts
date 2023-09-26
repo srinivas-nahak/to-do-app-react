@@ -8,8 +8,25 @@ router.get("", (req, res) => {
 });
 
 router.post("", (req, res) => {
-  console.log(req.body);
-  //res.json(dummyTasksList);
+  dummyTasksList.push(req.body);
+
+  res.json(dummyTasksList);
+});
+
+router.delete("/:id", (req, res) => {
+  const id = parseFloat(req.params.id);
+
+  console.log(id);
+
+  const deleteIndex = dummyTasksList.findIndex((task) => task.id === id);
+
+  dummyTasksList.splice(1, deleteIndex);
+
+  res.json(dummyTasksList);
+});
+
+router.patch("/:id", (req, res) => {
+  const id = parseFloat(req.params.id);
 });
 
 export default router;

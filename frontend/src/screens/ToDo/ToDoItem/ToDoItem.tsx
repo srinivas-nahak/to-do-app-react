@@ -6,11 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { TaskType, taskAction } from "../../../store/taskSlice";
+import { useDeleteToDoMutation } from "../../../store/api/apiSlices";
 
 const ToDoItem: React.FC<{ task: TaskType }> = ({ task }) => {
   const { id, title, isChecked } = task;
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
+
+  const [deleteToDo] = useDeleteToDoMutation();
 
   const checkHandler = () => {
     // dispatch(taskAction.checkTask(id));
@@ -18,6 +21,7 @@ const ToDoItem: React.FC<{ task: TaskType }> = ({ task }) => {
 
   const removeHandler = () => {
     // dispatch(taskAction.removeTask(id));
+    deleteToDo(id);
   };
 
   const tickClass = isChecked
