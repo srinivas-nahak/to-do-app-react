@@ -37,25 +37,12 @@ const taskSlice = createSlice({
       );
     },
     checkTask(state, action: { payload: number }) {
-      let tempTask: TaskType | undefined = undefined;
-      state.tasksList = state.tasksList.filter((task) => {
+      state.tasksList = state.tasksList.map((task) => {
         if (task.id === action.payload) {
-          if (!task.isChecked) {
-            tempTask = task;
-            return;
-          }
-
           task.isChecked = !task.isChecked;
-
-          return task;
         }
         return task;
       });
-      if (tempTask) {
-        const task = tempTask as TaskType;
-        task.isChecked = !task.isChecked;
-        state.tasksList.push(tempTask!);
-      }
     },
   },
 });
@@ -63,3 +50,26 @@ const taskSlice = createSlice({
 export const taskAction = taskSlice.actions;
 
 export default taskSlice.reducer;
+
+//Pushing checked task to bottom
+// checkTask(state, action: { payload: number }) {
+//   let tempTask: TaskType | undefined = undefined;
+//   state.tasksList = state.tasksList.filter((task) => {
+//     if (task.id === action.payload) {
+//       if (!task.isChecked) {
+//         tempTask = task;
+//         return;
+//       }
+
+//       task.isChecked = !task.isChecked;
+
+//       return task;
+//     }
+//     return task;
+//   });
+//   if (tempTask) {
+//     const task = tempTask as TaskType;
+//     task.isChecked = !task.isChecked;
+//     state.tasksList.push(tempTask!);
+//   }
+// },

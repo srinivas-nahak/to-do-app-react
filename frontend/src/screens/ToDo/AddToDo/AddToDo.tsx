@@ -9,7 +9,7 @@ import { errorAction } from "../../../store/errorSlice";
 import type {} from "redux-thunk/extend-redux";
 import { notificationHandler } from "../../../components/CustomNotification/CustomNotification";
 
-const AddToDo = () => {
+const AddToDo: React.FC<{ className: string }> = ({ className }) => {
   const [inputValue, setInputValue] = useState("");
 
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const AddToDo = () => {
   };
 
   return (
-    <Card className={styles["new-task-form-container"]}>
+    <Card className={`${styles["new-task-form-container"]} ${className}`}>
       <form onSubmit={submitHandler}>
         <input
           type="text"
