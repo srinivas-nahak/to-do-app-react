@@ -4,6 +4,7 @@ export type NotificationType = {
   message: string;
   isError: boolean;
   showNotification: boolean;
+  taskCompleted?: boolean;
 };
 
 const initialState: NotificationType = {
@@ -17,9 +18,13 @@ const notificationSlice = createSlice({
   initialState,
   reducers: {
     showNotification(state, action: { payload: NotificationType }) {
-      state.showNotification = action.payload.showNotification;
-      state.isError = action.payload.isError;
-      state.message = action.payload.message;
+      // state.showNotification = action.payload.showNotification;
+      // state.isError = action.payload.isError;
+      // state.message = action.payload.message;
+      // if (action.payload.taskCompleted)
+      //   state.taskCompleted = action.payload.taskCompleted;
+
+      return { ...action.payload };
     },
   },
 });

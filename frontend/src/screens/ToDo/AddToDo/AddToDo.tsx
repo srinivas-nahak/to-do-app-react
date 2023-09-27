@@ -9,6 +9,8 @@ import { taskAction } from "../../../store/taskSlice";
 import { errorAction } from "../../../store/errorSlice";
 import { useAddToDoMutation } from "../../../store/api/apiSlices";
 import { notificationAction } from "../../../store/notificationSlice";
+import type {} from "redux-thunk/extend-redux";
+import { notificationHandler } from "../../../components/CustomNotification/CustomNotification";
 
 const AddToDo = () => {
   const [inputValue, setInputValue] = useState("");
@@ -41,23 +43,12 @@ const AddToDo = () => {
 
     //Showing Notification
     dispatch(
-      notificationAction.showNotification({
+      notificationHandler({
         showNotification: true,
         isError: false,
         message: "1 Task Added!",
       })
     );
-
-    //Hiding the notification after 1.5seconds
-    setTimeout(() => {
-      dispatch(
-        notificationAction.showNotification({
-          showNotification: false,
-          isError: false,
-          message: "",
-        })
-      );
-    }, 700);
 
     //Sending data to the server
     // addToDo({

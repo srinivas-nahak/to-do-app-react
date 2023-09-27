@@ -3,21 +3,30 @@ import IconButton from "../../../components/UI/IconButton/IconButton";
 import { faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
 import styles from "./ToDoItem.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { TaskType, taskAction } from "../../../store/taskSlice";
-import { useDeleteToDoMutation } from "../../../store/api/apiSlices";
-import { notificationAction } from "../../../store/notificationSlice";
+import { notificationHandler } from "../../../components/CustomNotification/CustomNotification";
+import type {} from "redux-thunk/extend-redux";
 
 const ToDoItem: React.FC<{ task: TaskType }> = ({ task }) => {
   const { id, title, isChecked } = task;
 
   const dispatch = useDispatch();
 
-  //const [deleteToDo] = useDeleteToDoMutation();
-
   const checkHandler = () => {
     dispatch(taskAction.checkTask(id));
+
+    //Showing the notification
+    if (!isChecked) {
+      dispatch(
+        notificationHandler({
+          showNotification: true,
+          isError: true,
+          taskCompleted: true,
+          message: "1 Task Completed!",
+        })
+      );
+    }
   };
 
   const removeHandler = () => {
@@ -25,23 +34,12 @@ const ToDoItem: React.FC<{ task: TaskType }> = ({ task }) => {
 
     //Showing the notification
     dispatch(
-      notificationAction.showNotification({
+      notificationHandler({
         showNotification: true,
         isError: true,
         message: "1 Task Deleted!",
       })
     );
-
-    //Hiding the notification after 1.5seconds
-    setTimeout(() => {
-      dispatch(
-        notificationAction.showNotification({
-          showNotification: false,
-          isError: false,
-          message: "",
-        })
-      );
-    }, 700);
 
     //deleteToDo(id);
   };
@@ -71,7 +69,10 @@ const ToDoItem: React.FC<{ task: TaskType }> = ({ task }) => {
       <IconButton
         icon={faXmark}
         className={styles["to-do-item-delete"]}
-        onClick={removeHandler}
+        onClick={(e) => {
+          e.stopPropagation();
+          removeHandler();
+        }}
       />
     </Card>
   );

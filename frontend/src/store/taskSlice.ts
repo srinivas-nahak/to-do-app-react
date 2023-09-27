@@ -29,7 +29,7 @@ const taskSlice = createSlice({
     addTask(state, action: { payload: TaskType }) {
       //state.tasksList = [...state.tasksList, action.payload];
 
-      state.tasksList.push(action.payload);
+      state.tasksList.unshift(action.payload);
     },
     removeTask(state, action: { payload: number }) {
       state.tasksList = state.tasksList.filter(
