@@ -1,14 +1,11 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "../../../components/UI/Card/Card";
 import styles from "./AddToDo.module.css";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useState } from "react";
 import IconButton from "../../../components/UI/IconButton/IconButton";
 import { useDispatch } from "react-redux";
 import { taskAction } from "../../../store/taskSlice";
 import { errorAction } from "../../../store/errorSlice";
-import { useAddToDoMutation } from "../../../store/api/apiSlices";
-import { notificationAction } from "../../../store/notificationSlice";
 import type {} from "redux-thunk/extend-redux";
 import { notificationHandler } from "../../../components/CustomNotification/CustomNotification";
 

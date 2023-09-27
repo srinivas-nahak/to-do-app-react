@@ -3,7 +3,7 @@ import {
   NotificationType,
   notificationAction,
 } from "../../store/notificationSlice";
-import { Action, Dispatch } from "@reduxjs/toolkit";
+import { Dispatch } from "@reduxjs/toolkit";
 
 const Notification: React.FC<{ notification: NotificationType }> = ({
   notification,
