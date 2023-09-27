@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import ErrorModal from "./components/ErrorModal/ErrorModal";
 import ToDo from "./screens/ToDo/ToDo";
 import { RootState } from "./store";
+import styles from "./App.module.css";
 import CustomNotification from "./components/CustomNotification/CustomNotification";
 
 const App = () => {

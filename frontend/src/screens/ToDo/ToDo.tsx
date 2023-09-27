@@ -27,7 +27,7 @@ const ToDo: React.FC<{ isNotificationVisible: boolean }> = ({
       }
     >
       <h1>ToDo List</h1>
-      <AddToDo />
+      <AddToDo className={styles["add-to-do"]} />
       {tasksList &&
         tasksList.map((task) => <ToDoItem key={task.id} task={task} />)}
       {!tasksList ||
