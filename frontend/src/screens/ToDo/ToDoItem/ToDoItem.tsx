@@ -7,21 +7,43 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { TaskType, taskAction } from "../../../store/taskSlice";
 import { useDeleteToDoMutation } from "../../../store/api/apiSlices";
+import { notificationAction } from "../../../store/notificationSlice";
 
 const ToDoItem: React.FC<{ task: TaskType }> = ({ task }) => {
   const { id, title, isChecked } = task;
 
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const [deleteToDo] = useDeleteToDoMutation();
+  //const [deleteToDo] = useDeleteToDoMutation();
 
   const checkHandler = () => {
-    // dispatch(taskAction.checkTask(id));
+    dispatch(taskAction.checkTask(id));
   };
 
   const removeHandler = () => {
-    // dispatch(taskAction.removeTask(id));
-    deleteToDo(id);
+    dispatch(taskAction.removeTask(id));
+
+    //Showing the notification
+    dispatch(
+      notificationAction.showNotification({
+        showNotification: true,
+        isError: true,
+        message: "1 Task Deleted!",
+      })
+    );
+
+    //Hiding the notification after 1.5seconds
+    setTimeout(() => {
+      dispatch(
+        notificationAction.showNotification({
+          showNotification: false,
+          isError: false,
+          message: "",
+        })
+      );
+    }, 700);
+
+    //deleteToDo(id);
   };
 
   const tickClass = isChecked

@@ -10,8 +10,16 @@ type TasksListType = {
   tasksList: TaskType[];
 };
 
+const dummyTaskList = [
+  { id: Math.random(), title: "Be Calm", isChecked: false },
+  { id: Math.random(), title: "Wake up Early", isChecked: false },
+  { id: Math.random(), title: "Do Breakfast", isChecked: false },
+  { id: Math.random(), title: "Do exercise", isChecked: false },
+  { id: Math.random(), title: "Submit Resume", isChecked: false },
+];
+
 const initialState: TasksListType = {
-  tasksList: [{ id: Math.random(), title: "Dummy Task", isChecked: false }],
+  tasksList: dummyTaskList,
 };
 
 const taskSlice = createSlice({

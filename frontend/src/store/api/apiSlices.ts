@@ -8,7 +8,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     getTodos: builder.query<TaskType[], void>({
       query: () => "/api/tasks",
-      transformResponse: (data: TaskType[]) => data.map(),
+      //transformResponse: (data: TaskType[]) => data.map(),
       providesTags: ["todos"],
     }),
     addToDo: builder.mutation({

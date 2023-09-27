@@ -2,52 +2,70 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "../../../components/UI/Card/Card";
 import styles from "./AddToDo.module.css";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
-import { FormEvent, useRef } from "react";
+import { FormEvent, useRef, useState } from "react";
 import IconButton from "../../../components/UI/IconButton/IconButton";
 import { useDispatch } from "react-redux";
 import { taskAction } from "../../../store/taskSlice";
 import { errorAction } from "../../../store/errorSlice";
-import {
-  useAddToDoMutation,
-  useDeleteToDoMutation,
-  useUpdateToDoMutation,
-} from "../../../store/api/apiSlices";
+import { useAddToDoMutation } from "../../../store/api/apiSlices";
+import { notificationAction } from "../../../store/notificationSlice";
 
 const AddToDo = () => {
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [inputValue, setInputValue] = useState("");
 
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const [addToDo] = useAddToDoMutation();
-  const [deleteToDo] = useAddToDoMutation();
+  // const [addToDo] = useAddToDoMutation();
+
+  const inputHandler: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setInputValue(event.target.value);
+  };
 
   const submitHandler = (event: FormEvent) => {
     event.preventDefault();
 
-    if (inputRef.current) {
-      const inputTask = inputRef.current.value.trim();
+    const inputTask = inputValue.trim();
 
-      if (inputTask === "") {
-        //dispatch(errorAction.showErrorModal("The task can't be empty!"));
-        return;
-      }
-
-      // dispatch(
-      //   taskAction.addTask({
-      //     id: Math.random(),
-      //     title: inputTask,
-      //     isChecked: false,
-      //   })
-      // );
-
-      //Sending data to the server
-      addToDo({
+    if (inputTask.length === 0) {
+      dispatch(errorAction.showErrorModal("The task can't be empty!"));
+      return;
+    }
+    //Adding new task
+    dispatch(
+      taskAction.addTask({
         id: Math.random(),
         title: inputTask,
         isChecked: false,
-      });
-      inputRef.current.value = "";
-    }
+      })
+    );
+
+    //Showing Notification
+    dispatch(
+      notificationAction.showNotification({
+        showNotification: true,
+        isError: false,
+        message: "1 Task Added!",
+      })
+    );
+
+    //Hiding the notification after 1.5seconds
+    setTimeout(() => {
+      dispatch(
+        notificationAction.showNotification({
+          showNotification: false,
+          isError: false,
+          message: "",
+        })
+      );
+    }, 700);
+
+    //Sending data to the server
+    // addToDo({
+    //   id: Math.random(),
+    //   title: inputTask,
+    //   isChecked: false,
+    // });
+    setInputValue("");
   };
 
   return (
@@ -57,7 +75,8 @@ const AddToDo = () => {
           type="text"
           name="task-input"
           placeholder="Enter your task..."
-          ref={inputRef}
+          onChange={inputHandler}
+          value={inputValue}
         />
         <IconButton
           type="submit"
