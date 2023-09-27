@@ -17,7 +17,7 @@ const notificationSlice = createSlice({
   name: "notification",
   initialState,
   reducers: {
-    showNotification(state, action: { payload: NotificationType }) {
+    showNotification(_, action: { payload: NotificationType }) {
       // state.showNotification = action.payload.showNotification;
       // state.isError = action.payload.isError;
       // state.message = action.payload.message;

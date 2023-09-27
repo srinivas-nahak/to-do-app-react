@@ -1,10 +1,6 @@
-import Card from "../../components/UI/Card/Card";
 import AddToDo from "./AddToDo/AddToDo";
 import ToDoItem from "./ToDoItem/ToDoItem";
 import styles from "./ToDo.module.css";
-import { useGetTodosQuery } from "../../store/api/apiSlices";
-import { TaskType } from "../../store/taskSlice";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
